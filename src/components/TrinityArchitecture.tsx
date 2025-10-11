@@ -1,39 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-
 export const TrinityArchitecture = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      const scrollStart = rect.top - windowHeight;
-      const scrollEnd = rect.bottom;
-      const scrollRange = scrollEnd - scrollStart;
-
-      const progress = Math.max(0, Math.min(1, -scrollStart / scrollRange));
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const pceProgress = Math.min(scrollProgress * 3, 1);
-  const etsProgress = Math.max(0, Math.min((scrollProgress - 0.33) * 3, 1));
-  const arcProgress = Math.max(0, Math.min((scrollProgress - 0.66) * 3, 1));
-  const mergeProgress = Math.max(0, (scrollProgress - 0.85) * 6.67);
 
   return (
     <section
       id="technology"
-      ref={sectionRef}
       className="bg-background py-24 sm:py-32"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +24,7 @@ export const TrinityArchitecture = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               {/* PCE Layer - Blue converging lines */}
-              <g opacity={pceProgress}>
+              <g opacity={1}>
                 {[...Array(12)].map((_, i) => {
                   const angle = (i * 30 * Math.PI) / 180;
                   const x1 = 300 + Math.cos(angle) * 250;
@@ -69,7 +38,7 @@ export const TrinityArchitecture = () => {
                       y2={300}
                       stroke="rgb(56, 189, 248)"
                       strokeWidth="2"
-                      opacity={0.6 * pceProgress}
+                      opacity={0.6}
                       className="animate-data-flow"
                       style={{ animationDelay: `${i * 0.1}s` }}
                     />
@@ -78,7 +47,7 @@ export const TrinityArchitecture = () => {
                 <circle
                   cx="300"
                   cy="300"
-                  r={80 * pceProgress}
+                  r={80}
                   fill="none"
                   stroke="rgb(56, 189, 248)"
                   strokeWidth="3"
@@ -92,14 +61,14 @@ export const TrinityArchitecture = () => {
                   fill="rgb(56, 189, 248)"
                   fontSize="18"
                   fontWeight="bold"
-                  opacity={pceProgress}
+                  opacity={1}
                 >
                   PCE
                 </text>
               </g>
 
               {/* ETS Layer - Purple overlay with robot face */}
-              <g opacity={etsProgress}>
+              <g opacity={1}>
                 {[...Array(8)].map((_, i) => {
                   const angle = (i * 45 * Math.PI) / 180 + Math.PI / 4;
                   const x1 = 300 + Math.cos(angle) * 180;
@@ -113,7 +82,7 @@ export const TrinityArchitecture = () => {
                       y2={300}
                       stroke="rgb(167, 139, 250)"
                       strokeWidth="2"
-                      opacity={0.7 * etsProgress}
+                      opacity={0.7}
                       strokeDasharray="5,5"
                       className="animate-data-flow"
                       style={{ animationDelay: `${i * 0.15}s` }}
@@ -123,13 +92,13 @@ export const TrinityArchitecture = () => {
                 <circle
                   cx="300"
                   cy="300"
-                  r={100 * etsProgress}
+                  r={100}
                   fill="rgba(167, 139, 250, 0.1)"
                   stroke="rgb(167, 139, 250)"
                   strokeWidth="3"
                 />
                 {/* Robot face icon */}
-                <g transform={`rotate(${etsProgress * 360} 300 300)`}>
+                <g>
                   <circle cx="285" cy="290" r="5" fill="rgb(167, 139, 250)" />
                   <circle cx="315" cy="290" r="5" fill="rgb(167, 139, 250)" />
                   <path
@@ -142,13 +111,13 @@ export const TrinityArchitecture = () => {
                   <path
                     d="M 300 325 L 310 315 Q 315 310 315 305 Q 315 300 310 300 Q 305 300 300 305 Q 295 300 290 300 Q 285 300 285 305 Q 285 310 290 315 Z"
                     fill="rgb(239, 68, 68)"
-                    opacity={etsProgress}
+                    opacity={1}
                   />
                 </g>
               </g>
 
               {/* ARC Layer - Green compliance grid */}
-              <g opacity={arcProgress}>
+              <g opacity={1}>
                 {/* Grid lines */}
                 {[...Array(5)].map((_, i) => (
                   <g key={`grid-${i}`}>
@@ -159,7 +128,7 @@ export const TrinityArchitecture = () => {
                       y2="360"
                       stroke="rgb(74, 222, 128)"
                       strokeWidth="1"
-                      opacity={0.5 * arcProgress}
+                      opacity={0.5}
                     />
                     <line
                       x1="350"
@@ -168,15 +137,15 @@ export const TrinityArchitecture = () => {
                       y2={240 + i * 30}
                       stroke="rgb(74, 222, 128)"
                       strokeWidth="1"
-                      opacity={0.5 * arcProgress}
+                      opacity={0.5}
                     />
                   </g>
                 ))}
                 <rect
                   x="220"
                   y="220"
-                  width={160 * arcProgress}
-                  height={160 * arcProgress}
+                  width={160}
+                  height={160}
                   fill="rgba(74, 222, 128, 0.1)"
                   stroke="rgb(74, 222, 128)"
                   strokeWidth="3"
@@ -184,7 +153,7 @@ export const TrinityArchitecture = () => {
                 />
                 {/* Compliance checkboxes */}
                 {["PCI", "HIPAA"].map((label, i) => (
-                  <g key={label} opacity={arcProgress}>
+                  <g key={label} opacity={1}>
                     <rect
                       x={260 + i * 80}
                       y="280"
@@ -199,7 +168,7 @@ export const TrinityArchitecture = () => {
                       stroke="rgb(74, 222, 128)"
                       strokeWidth="3"
                       fill="none"
-                      opacity={arcProgress}
+                      opacity={1}
                     />
                     <text
                       x={270 + i * 80}
@@ -216,8 +185,7 @@ export const TrinityArchitecture = () => {
               </g>
 
               {/* Final Merged State */}
-              {mergeProgress > 0 && (
-                <g opacity={mergeProgress}>
+              <g opacity={1}>
                   <circle
                     cx="300"
                     cy="300"
@@ -239,7 +207,6 @@ export const TrinityArchitecture = () => {
                     TRINITY
                   </text>
                 </g>
-              )}
 
               {/* Gradient definition */}
               <defs>
