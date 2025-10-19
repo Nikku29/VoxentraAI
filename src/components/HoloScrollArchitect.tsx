@@ -98,7 +98,7 @@ export const HoloScrollArchitect = () => {
     <section 
       ref={containerRef}
       className="relative"
-      style={{ height: "600vh" }}
+      style={{ height: "300vh" }}
     >
       {/* Sticky container for visualization */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-background">
@@ -119,20 +119,20 @@ export const HoloScrollArchitect = () => {
             width="600" 
             height="600" 
             viewBox="0 0 600 600"
-            className="transition-transform duration-1000"
+            className="transition-transform duration-500"
             style={{
               transform: `perspective(1000px) rotateX(${stageProgress * 10}deg) rotateY(${currentStage * 10}deg)`
             }}
           >
             {/* Core Structure */}
-            <g className={`transition-all duration-1000 ${currentStage >= 0 ? 'opacity-100' : 'opacity-0'}`}>
+            <g className={`transition-all duration-500 ${currentStage >= 0 ? 'opacity-100' : 'opacity-0'}`}>
               {/* Main isometric cube */}
               <path
                 d="M 300 200 L 400 250 L 400 350 L 300 400 L 200 350 L 200 250 Z"
                 fill="hsl(var(--muted-foreground) / 0.3)"
                 stroke="hsl(var(--border))"
                 strokeWidth="2"
-                className="transition-all duration-1000"
+                className="transition-all duration-500"
                 style={{
                   filter: currentStage >= 5 ? 'drop-shadow(0 0 30px hsl(var(--neon)))' : 'none'
                 }}
@@ -155,7 +155,7 @@ export const HoloScrollArchitect = () => {
 
             {/* PCE Layer - Blue pathways */}
             {currentStage >= 1 && (
-              <g className="animate-fade-scale" style={{ animationDelay: "0.2s" }}>
+              <g className="animate-fade-scale" style={{ animationDelay: "0.1s" }}>
                 {/* Blue data lines flowing in */}
                 {[...Array(8)].map((_, i) => {
                   const angle = (i / 8) * Math.PI * 2;
@@ -192,7 +192,7 @@ export const HoloScrollArchitect = () => {
 
             {/* ETS Layer - Purple twin */}
             {currentStage >= 2 && (
-              <g className="animate-fade-scale" style={{ animationDelay: "0.3s" }}>
+              <g className="animate-fade-scale" style={{ animationDelay: "0.15s" }}>
                 {/* Emotional twin structure */}
                 <path
                   d="M 450 300 L 500 325 L 500 375 L 450 400 L 400 375 L 400 325 Z"
@@ -221,7 +221,7 @@ export const HoloScrollArchitect = () => {
 
             {/* ARC Layer - Green grid */}
             {currentStage >= 3 && (
-              <g className="animate-fade-scale" style={{ animationDelay: "0.4s" }}>
+              <g className="animate-fade-scale" style={{ animationDelay: "0.2s" }}>
                 {/* Grid overlay */}
                 {[...Array(5)].map((_, i) => (
                   <line
@@ -265,7 +265,7 @@ export const HoloScrollArchitect = () => {
 
             {/* S2S Integration - Rapid flow */}
             {currentStage >= 4 && (
-              <g className="animate-fade-scale" style={{ animationDelay: "0.5s" }}>
+              <g className="animate-fade-scale" style={{ animationDelay: "0.25s" }}>
                 {/* Circular flow lines */}
                 <circle
                   cx="300"
@@ -283,7 +283,7 @@ export const HoloScrollArchitect = () => {
 
             {/* Final Synthesis - All layers combined */}
             {currentStage >= 5 && (
-              <g className="animate-fade-scale" style={{ animationDelay: "0.6s" }}>
+              <g className="animate-fade-scale" style={{ animationDelay: "0.3s" }}>
                 <circle
                   cx="300"
                   cy="300"
