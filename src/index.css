@@ -39,6 +39,7 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* VoxentraAI Custom Tokens */
+    --neon: 199 95% 60%;
     --neon-blue: 199 95% 60%;
     --neon-purple: 270 75% 65%;
     --neon-green: 142 76% 55%;
@@ -119,6 +120,29 @@ All colors MUST be HSL.
   }
 }
 
+/* HoloScrollArchitect Animations */
+@keyframes slide-in {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* Utility classes */
 .animate-data-flow {
   animation: dataFlow 3s ease-in-out infinite;
@@ -150,6 +174,15 @@ All colors MUST be HSL.
 
 .bg-neon-gradient {
   background: var(--gradient-neon);
+}
+
+/* HoloScrollArchitect Utility Classes */
+.animate-slide-in {
+  animation: slide-in 0.8s ease-out forwards;
+}
+
+.animate-fade-scale {
+  animation: fade-scale 0.6s ease-out forwards;
 }
 
 @layer base {
